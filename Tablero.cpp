@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "Alfil.cpp"
-#include "Caballo.cpp"
-#include "Dama.cpp"
-#include "Peon.cpp"
-#include "Rey.cpp"
-#include "Torre.cpp"
+#include "Alfil.hpp"
+#include "Caballo.hpp"
+#include "Dama.hpp"
+#include "Peon.hpp"
+#include "Rey.hpp"
+#include "Torre.hpp"
 
 using namespace std;
 
