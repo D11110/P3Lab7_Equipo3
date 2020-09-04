@@ -32,6 +32,8 @@ public:
             }
             else
             {
+                tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
+                tablero[actualX][actualY] = NULL;
                 return true;
             }
         }
@@ -39,6 +41,8 @@ public:
         {
             if (((nuevaY - 1) == actualY) || ((nuevaY + 1) == actualY) && (nuevaX == (actualX + 1)))
             {
+                tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
+                tablero[actualX][actualY] = NULL;
                 return true;
             }
             else

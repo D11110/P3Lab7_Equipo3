@@ -22,6 +22,7 @@ public:
     virtual bool validarMovimiento(string, string, Pieza ***) = 0;
     virtual string getX() = 0;
     virtual string getY() = 0;
+    virtual string getRepresentacion() = 0;
     //virtual int coordenada() = 0;
     int coordenadaXs(string posicionAConvertir)
     {

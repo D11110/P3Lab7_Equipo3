@@ -40,6 +40,8 @@ public:
         int difEnY = nuevaY - actualY;
         if (abs(difEnX) == abs(difEnY))
         {
+            tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
+            tablero[actualX][actualY] = NULL;
             return true;
         }
         else

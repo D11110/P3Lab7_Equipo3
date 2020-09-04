@@ -20,7 +20,7 @@ public:
     }
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
-    
+
         int nuevaX, nuevaY, actualX, actualY;
         nuevaX = coordenadaXs(nuevaPosicion);
         nuevaY = coordenadasY(nuevaPosicion);
@@ -30,10 +30,14 @@ public:
         int difEnY = nuevaY - actualY;
         if (abs(difEnX) == abs(difEnY))
         {
+            tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
+            tablero[actualX][actualY] = NULL;
             return true;
         }
         else if (difEnY == 0 || difEnX == 0)
         {
+            tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
+            tablero[actualX][actualY] = NULL;
             return true;
         }
         else

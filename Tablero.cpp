@@ -37,28 +37,58 @@ void fichas(int i, int j, string color, char pieza)
 
 void imprimirTablero()
 {
-    int filas = 2;
+    int filas = 1;
+    int columnas = 97;
     string tableroJugar[18][9];
     for (int i = 0; i < 18; i++)
     {
         for (int j = 0; j < 9; j++)
         {
-            if (i == 0 && j == 0)
+            if (i == 0)
             {
-                std::cout << "______________________________";
+                if (j > 0)
+                {
+                    cout << "____";
+                }
+                else if (j == 0)
+                {
+                    cout << "   ";
+                }
             }
-            else if (i == 1 && j == 0)
+            else if (i % 2 == 1 && i < 17)
             {
-                std::cout << "[8]";
+                if (j == 0)
+                {
+                    cout << "[" << to_string(9 - filas) << "]";
+                    filas++;
+                }
+                else if (j > 0)
+                {
+                    cout << " P |";
+                }
             }
-            else if(i==2 && j==){}
-            else if (i == 3 && j == 0)
+            if (i % 2 == 0 && i > 0)
             {
-                std::cout << "[7]";
+                if (j == 0)
+                {
+                    cout << "   ";
+                }
+                if (j > 0)
+                {
+                    cout << "___|";
+                }
             }
-            else if (i % 2 == 0)
+            if (i == 17)
             {
-                cout << "    ___|___|___|___|___|___|___|___|";
+                if (j == 0)
+                {
+                    cout << "   ";
+                }
+                else
+                {
+                    cout << "[" << (char)columnas << "] ";
+                    columnas++;
+                }
             }
         }
         cout << endl;
