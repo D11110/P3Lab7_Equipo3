@@ -29,7 +29,7 @@ public:
     ~Alfil()
     {
     }
-    bool Alfil::validarMovimiento(std::string nuevaPosicion, std::string posicionActual, Pieza ***tablero)
+    bool Alfil::validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
         int nuevaX, nuevaY, actualX, actualY;
         nuevaX = coordenadaXs(nuevaPosicion);
