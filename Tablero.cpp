@@ -1,16 +1,17 @@
 #include <iostream>
+#include <string>
 
-#include "Alfil.hpp"
-#include "Caballo.hpp"
-#include "Dama.hpp"
-#include "Peon.hpp"
-#include "Rey.hpp"
-#include "Torre.hpp"
+// #include "Alfil.hpp"
+// #include "Caballo.hpp"
+// #include "Dama.hpp"
+// #include "Peon.hpp"
+// #include "Rey.hpp"
+// #include "Torre.hpp"
 
 using namespace std;
 
 char letrasTablero[8][8];
-string tablero[8][8];
+string tablero[18][18];
 
 void fichas(int i, int j, string color, char pieza)
 {
@@ -22,13 +23,45 @@ void fichas(int i, int j, string color, char pieza)
         {
             if (iM == i && jM == j)
             {
-                string cadena = "";
-                cadena += "____\n " + pieza;
-                cadena += " |\n   |";
+                string piezaEnCadena = "";
+                piezaEnCadena += pieza;
+                string cadena;
+                cadena = " " + piezaEnCadena + " |";
 
                 tablero[iM][jM] = cadena;
+                cadena = "";
             }
         }
+    }
+}
+
+void imprimirTablero()
+{
+    int filas = 2;
+    string tableroJugar[18][9];
+    for (int i = 0; i < 18; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (i == 0 && j == 0)
+            {
+                std::cout << "______________________________";
+            }
+            else if (i == 1 && j == 0)
+            {
+                std::cout << "[8]";
+            }
+            else if(i==2 && j==){}
+            else if (i == 3 && j == 0)
+            {
+                std::cout << "[7]";
+            }
+            else if (i % 2 == 0)
+            {
+                cout << "    ___|___|___|___|___|___|___|___|";
+            }
+        }
+        cout << endl;
     }
 }
 
@@ -123,18 +156,12 @@ int main()
             fichas(5, 6, "vacio", ' ');
             fichas(5, 7, "vacio", ' ');
 
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    std::cout << tablero[i][j];
-                }
-                std::cout << std::endl;
-            }
-            
+            imprimirTablero();
+
             break;
 
         default:
+            isPlaying = false;
             break;
         }
     }
