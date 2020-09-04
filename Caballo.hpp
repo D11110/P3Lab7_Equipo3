@@ -16,7 +16,7 @@ public:
     {
         return this->x;
     }
-    std::string Caballo::getY()
+    string Caballo::getY()
     {
         return this->y;
     }
