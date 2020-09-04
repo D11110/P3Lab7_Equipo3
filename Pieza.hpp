@@ -9,8 +9,15 @@ protected:
     char representacion;
 
 public:
-    Pieza();
-    Pieza(std::string, std::string, char);
+    Pieza::Pieza()
+    {
+    }
+    Pieza::Pieza(std::string x, std::string y, char representacion)
+    {
+        this->x = x;
+        this->y = y;
+        this->representacion = representacion;
+    }
     virtual bool validarMovimiento(std::string, std::string, Pieza ***) = 0;
     virtual std::string getX() = 0;
     virtual std::string getY() = 0;

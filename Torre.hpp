@@ -8,10 +8,25 @@
 class Torre : public Pieza
 {
 public:
-    Torre();
-    Torre(std::string, std::string, char) : Pieza(x, y, representacion){};
-    std::string getX();
-    std::string getY();
+    Torre::Torre()
+    {
+    }
+    Torre::Torre(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    {
+    }
+
+    std::string Torre::getX()
+    {
+        return this->x;
+    }
+    std::string Torre::getY()
+    {
+        return this->y;
+    }
+
+    Torre::~Torre()
+    {
+    }
     bool validarMovimiento(std::string, std::string, Pieza ***);
     ~Torre();
 };

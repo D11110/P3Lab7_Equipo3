@@ -6,11 +6,21 @@
 class Peon : public Pieza
 {
 public:
-    Peon();
-    Peon(std::string, std::string, char) : Pieza(x, y, representacion){};
-    std::string getX();
-    std::string getY();
-    bool validarMovimiento(std::string, std::string, Pieza***);
-    ~Peon();
+    Peon::Peon()
+{
+}
+Peon::Peon(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+{
+}
+
+std::string Peon::getX()
+{
+    return this->x;
+}
+std::string Peon::getY()
+{
+    return this->y;
+}
+
 };
 #endif

@@ -5,10 +5,18 @@
 class Reina : public Pieza
 {
 public:
-    Reina();
-    Reina(std::string, std::string, char) : Pieza(x, y, representacion){};
-    std::string getX();
-    std::string getY();
-    bool validarMovimiento(std::string, std::string, Pieza ***);
-    ~Reina();
+    Reina::Reina()
+    {
+    }
+    Reina::Reina(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    {
+    }
+    std::string Reina::getX()
+    {
+        return this->x;
+    }
+    std::string Reina::getY()
+    {
+        return this->y;
+    }
 };

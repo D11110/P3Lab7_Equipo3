@@ -5,10 +5,21 @@
 class Rey : public Pieza
 {
 public:
-    Rey();
-    Rey(std::string, std::string, char) : Pieza(x, y, representacion){};
-    std::string getX();
-    std::string getY();
-    bool validarMovimiento(std::string, std::string,Pieza***);
+    Rey::Rey()
+    {
+    }
+    Rey::Rey(std::string x, std::string y, char represenacion) : Pieza(x, y, represenacion)
+    {
+    }
+    std::string Rey::getX()
+    {
+        return this->x;
+    }
+    std::string Rey::getY()
+    {
+        return this->y;
+    }
+
+    bool validarMovimiento(std::string, std::string, Pieza ***);
     ~Rey();
 };
