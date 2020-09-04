@@ -1,22 +1,27 @@
 #include <iostream>
 #include <string>
 #include "Pieza.hpp"
+using namespace std;
+#ifndef REINA_H
+#define REINA_H
 
 class Reina : public Pieza
 {
 public:
-    Reina::Reina()
+    Reina()
     {
     }
-    Reina::Reina(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Reina(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
     {
     }
-    std::string Reina::getX()
+    string Reina::getX()
     {
         return this->x;
     }
-    std::string Reina::getY()
+    string Reina::getY()
     {
         return this->y;
     }
 };
+
+#endif

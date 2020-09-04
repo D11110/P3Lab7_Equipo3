@@ -1,21 +1,24 @@
 #include <iostream>
 #include <string>
 #include "Pieza.hpp"
+#ifndef REY_H
+#define REY_H
 
+using namespace std;
 class Rey : public Pieza
 {
 public:
-    Rey::Rey()
+    Rey()
     {
     }
-    Rey::Rey(std::string x, std::string y, char represenacion) : Pieza(x, y, represenacion)
+    Rey(std::string x, std::string y, char represenacion) : Pieza(x, y, represenacion)
     {
     }
-    std::string Rey::getX()
+    string Rey::getX()
     {
         return this->x;
     }
-    std::string Rey::getY()
+    string Rey::getY()
     {
         return this->y;
     }
@@ -23,3 +26,4 @@ public:
     bool validarMovimiento(std::string, std::string, Pieza ***);
     ~Rey();
 };
+#endif

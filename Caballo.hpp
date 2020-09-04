@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Pieza.hpp"
-
+using namespace std;
 using namespace std;
 #ifndef CABALLO_H
 #define CABALLO_H
@@ -12,7 +12,7 @@ public:
 
     Caballo::Caballo(std::string x, std::string y, char representacion) : Pieza(x, y, representacion) {}
 
-    std::string Caballo::getX()
+    string Caballo::getX()
     {
         return this->x;
     }

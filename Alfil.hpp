@@ -4,27 +4,29 @@
 
 #ifndef ALFIL_H
 #define ALFIL_H
+
+using namespace std;
 class Alfil : public Pieza
 {
 public:
-    Alfil::Alfil()
+    Alfil()
     {
     }
 
-    Alfil::Alfil(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Alfil(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
     {
     }
 
-    std::string Alfil::getX()
+    string Alfil::getX()
     {
         return this->x;
     }
-    std::string Alfil::getY()
+    string Alfil::getY()
     {
         return this->y;
     }
 
-    Alfil::~Alfil()
+    ~Alfil()
     {
     }
     bool Alfil::validarMovimiento(std::string nuevaPosicion, std::string posicionActual, Pieza ***tablero)
@@ -36,6 +38,14 @@ public:
         actualY = coordenadasY(posicionActual);
         int difEnX = nuevaX - actualX;
         int difEnY = nuevaY - actualY;
+        if (abs(difEnX) == abs(difEnY))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     int coordenadaXs(std::string posicionAConvertir)
