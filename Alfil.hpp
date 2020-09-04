@@ -11,7 +11,7 @@ public:
     Alfil(std::string, std::string, char) : Pieza(x, y, representacion){};
     std::string getX();
     std::string getY();
-    bool validarMovimiento(int, int, Pieza***);
+    bool validarMovimiento(std::string, std::string, Pieza***);
     ~Alfil();
 };
 #endif

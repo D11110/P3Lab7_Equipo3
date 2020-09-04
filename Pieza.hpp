@@ -10,9 +10,10 @@ protected:
 
 public:
     Pieza();
-    Pieza(std::string,std::string, char);
-    virtual bool validarMovimiento(std::string, std::string, Pieza***) = 0;
+    Pieza(std::string, std::string, char);
+    virtual bool validarMovimiento(std::string, std::string, Pieza ***) = 0;
     virtual std::string getX() = 0;
     virtual std::string getY() = 0;
+    virtual int coordenada() = 0;
 };
 #endif
