@@ -13,7 +13,7 @@ public:
     {
     }
 
-    Alfil(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Alfil(string x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
 

@@ -2,6 +2,7 @@
 #define PIEZA_H
 #include <iostream>
 #include <string>
+using namespace std;
 class Pieza
 {
 protected:
@@ -9,18 +10,18 @@ protected:
     char representacion;
 
 public:
-    Pieza::Pieza()
+    Pieza()
     {
     }
-    Pieza::Pieza(std::string x, std::string y, char representacion)
+    Pieza(string x, string y, char representacion)
     {
         this->x = x;
         this->y = y;
         this->representacion = representacion;
     }
-    virtual bool validarMovimiento(std::string, std::string, Pieza ***) = 0;
-    virtual std::string getX() = 0;
-    virtual std::string getY() = 0;
+    virtual bool validarMovimiento(string, string, Pieza ***) = 0;
+    virtual string getX() = 0;
+    virtual string getY() = 0;
     virtual int coordenada() = 0;
 };
 #endif

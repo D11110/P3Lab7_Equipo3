@@ -11,7 +11,7 @@ public:
     Peon()
     {
     }
-    Peon(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Peon(string x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
 

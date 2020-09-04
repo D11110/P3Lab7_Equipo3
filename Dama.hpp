@@ -11,7 +11,7 @@ public:
     Reina()
     {
     }
-    Reina(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Reina(string x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
     string Reina::getX()

@@ -10,7 +10,7 @@ class Caballo : public Pieza
 public:
     Caballo::Caballo() {}
 
-    Caballo::Caballo(std::string x, std::string y, char representacion) : Pieza(x, y, representacion) {}
+    Caballo::Caballo(string x, string y, char representacion) : Pieza(x, y, representacion) {}
 
     string Caballo::getX()
     {

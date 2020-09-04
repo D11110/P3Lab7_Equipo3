@@ -13,7 +13,7 @@ public:
     Torre()
     {
     }
-    Torre(std::string x, std::string y, char representacion) : Pieza(x, y, representacion)
+    Torre(string x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
 

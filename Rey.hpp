@@ -11,7 +11,7 @@ public:
     Rey()
     {
     }
-    Rey(std::string x, std::string y, char represenacion) : Pieza(x, y, represenacion)
+    Rey(string x, string y, char represenacion) : Pieza(x, y, represenacion)
     {
     }
     string Rey::getX()
