@@ -20,6 +20,7 @@ public:
     }
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
+    
         int nuevaX, nuevaY, actualX, actualY;
         nuevaX = coordenadaXs(nuevaPosicion);
         nuevaY = coordenadasY(nuevaPosicion);
@@ -45,45 +46,4 @@ public:
         return this->y;
     }
 };
-int coordenadaXs(string posicionAConvertir)
-{
-    int x = 0;
-    switch (posicionAConvertir.at(0))
-    {
-    case 'a':
-        x = 1;
-        break;
-    case 'b':
-        x = 2;
-        break;
-    case 'c':
-        x = 3;
-        break;
-    case 'd':
-        x = 4;
-        break;
-    case 'e':
-        x = 5;
-        break;
-    case 'f':
-        x = 6;
-        break;
-    case 'g':
-        x = 7;
-        break;
-    case 'h':
-        x = 8;
-        break;
-    default:
-        break;
-    }
-    return x;
-}
-int coordenadasY(string posicionAconvertir)
-{
-    std::string aux = "";
-    aux += posicionAconvertir.at(1);
-    int y = stoi(aux);
-    return y;
-}
 #endif
