@@ -13,14 +13,10 @@ using namespace std;
 
 int main()
 {
-    bool resp =true;
-    while (resp)
-    {
-        cout << "A ver" << endl;
-        Ajedrez *ac = new Ajedrez();
-        ac->crearTablero();
-        ac->imprimirTablero();
-        
-        resp = false;
-    }
+
+    cout << "A ver" << endl;
+    Ajedrez *ac = new Ajedrez();
+    ac->crearTablero();
+    ac->imprimirTablero();
+    ac->jugar();
 }

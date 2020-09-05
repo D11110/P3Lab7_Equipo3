@@ -11,45 +11,40 @@ public:
     Peon()
     {
     }
-    Peon(int x, int y, char representacion) : Pieza(x, y, representacion)
+    Peon(int posX, int posY, char representacion) : Pieza(fila, columna, representacion)
     {
     }
-    bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
+    bool validarMovimiento(int x, int y, Pieza ***tablero)
     {
-        int nuevaX, nuevaY, actualX, actualY;
-        nuevaX = coordenadaXs(nuevaPosicion);
-        nuevaY = coordenadasY(nuevaPosicion);
-        actualX = coordenadaXs(posicionActual);
-        actualY = coordenadasY(posicionActual);
-        int difEnX = nuevaX - actualX;
-        int difEnY = nuevaY - actualY;
-
-        if (tablero[nuevaX][nuevaY] == NULL)
+        if (tablero[x][y] == NULL)
         {
-            if ((nuevaY != actualY) || (nuevaX < actualX))
+            if (x < fila || y != columna)
             {
+                cout << "Pe";
                 return false;
             }
             else
             {
-                tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
-                tablero[actualX][actualY] = NULL;
+                tablero[x][y] = tablero[fila][columna];
+                tablero[fila][columna] = NULL;
                 return true;
             }
         }
-        else if (tablero[nuevaX][nuevaY] != NULL)
+        else if (tablero[x][y] != NULL)
         {
-            if (((nuevaY - 1) == actualY) || ((nuevaY + 1) == actualY) && (nuevaX == (actualX + 1)))
+            if (((y - 1) == columna) || ((y + 1) == columna) && (x == (fila + 1)))
             {
-                tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
-                tablero[actualX][actualY] = NULL;
+                tablero[x][y] = tablero[fila][columna];
+                tablero[fila][columna] = NULL;
                 return true;
             }
             else
             {
+                cout << "rro;";
                 return false;
             }
         }
+        
     }
 };
 

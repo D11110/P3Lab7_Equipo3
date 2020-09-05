@@ -13,26 +13,19 @@ public:
     {
     }
 
-    Alfil(int x, int y, char representacion) : Pieza(x, y, representacion)
+    Alfil(int x, int y, char representacion) : Pieza(fila, columna, representacion)
     {
     }
 
     ~Alfil()
     {
     }
-    bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
+    bool validarMovimiento(int x, int y, Pieza ***tablero)
     {
-        int nuevaX, nuevaY, actualX, actualY;
-        nuevaX = coordenadaXs(nuevaPosicion);
-        nuevaY = coordenadasY(nuevaPosicion);
-        actualX = coordenadaXs(posicionActual);
-        actualY = coordenadasY(posicionActual);
-        int difEnX = nuevaX - actualX;
-        int difEnY = nuevaY - actualY;
+        int difEnX = x - fila;
+        int difEnY = y - columna;
         if (abs(difEnX) == abs(difEnY))
         {
-            tablero[nuevaX][nuevaY] = tablero[actualX][actualY];
-            tablero[actualX][actualY] = NULL;
             return true;
         }
         else

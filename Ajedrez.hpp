@@ -124,7 +124,155 @@ public:
             cout << endl;
         }
     }
-    void jugar();
+    void imprimirTableroNegras()
+    {
+        cout << "   H  G  F  E  D  C  B  A  " << endl;
+        for (int i = 7; i >= 0; i--)
+        {
+            cout << i << " ";
+            for (int j = 7; j >= 0; j--)
+            {
+                if (tablero[i][j] == NULL)
+                {
+                    cout << "[ ]";
+                }
+                else
+                {
+                    cout << "[";
+                    cout << tablero[i][j]->getRepresentacion();
+                    cout << "]";
+                }
+            }
+            cout << endl;
+        }
+    }
+    void jugar()
+    {
+        int turnos = 0;
+        int x, y, fil, col;
+        string coor;
+        string jugadorBlancas, jugadorNegras;
+        string salida = "bai";
+        string comando = "";
+        cout << "Ingrese su nombre jugador de piezas blancas" << endl;
+        cin >> jugadorBlancas;
+        cout << "Ingrese su nombre jugador de piezas negras" << endl;
+        cin >> jugadorNegras;
+        while (true)
+        {
+            if (turnos % 2 == 0)
+            {
+                imprimirTablero();
+                cout << jugadorBlancas << endl;
+                cout << "Ingrese: ";
+                cin >> comando;
+                if (comando == salida)
+                {
+                    break;
+                }
+                else
+                {
+                    x = comando[3] - 48;
+                    y = comando[2] - 65;
+                    fil = comando[6] - 48;
+                    col = comando[5] - 65;
+                    while (x < 0 || x > 7 || y < 0 || y > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+                    while (tablero[x][y] == NULL)
+                    {
+                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+
+                    while (fil < 0 || fil > 7 || col < 0 || col > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+                    if (tablero[x][y]->validarMovimiento(fil, col, tablero))
+                    {
+                        imprimirTablero();
+                        turnos++;
+                    }
+                    else
+                    {
+                        cout << "\nAlgo salio mal. Intente de nuevo.\n";
+                    }
+                }
+            }
+            else
+            {
+                imprimirTableroNegras();
+                cout << jugadorNegras << endl;
+                cout << "Ingrese: ";
+                cin >> comando;
+                if (comando == salida)
+                {
+                    break;
+                }
+                else
+                {
+                    x = comando[3] - 48;
+                    y = comando[2] - 65;
+                    fil = comando[6] - 48;
+                    col = comando[5] - 65;
+                    while (x < 0 || x > 7 || y < 0 || y > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+                    while (tablero[x][y] == NULL)
+                    {
+                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+
+                    while (fil < 0 || fil > 7 || col < 0 || col > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        x = comando[3] - 48;
+                        y = comando[2] - 65;
+                        fil = comando[6] - 48;
+                        col = comando[5] - 65;
+                    }
+                    if (tablero[x][y]->movimiento(fil, col, tablero))
+                    {
+                        imprimirTableroNegras();
+                        turnos++;
+                    }
+                    else
+                    {
+                        cout << "\nAlgo inesperado ocurrio. Intente de nuevo.\n";
+                    }
+                }
+            }
+        }
+    }
+
     ~Ajedrez();
 };
 #endif
