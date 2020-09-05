@@ -207,11 +207,11 @@ public:
                         xDestino = comando.at(5) - 65;
                         yDestino = comando.at(6) - 48;
                     }
-                    cout << tablero[xActual][yActual]->getRepresentacion();
-                    cout << tablero[xDestino][yDestino]->getRepresentacion();
+                    // cout << tablero[xActual][yActual]->getRepresentacion();
+                    // cout << tablero[xDestino][yDestino]->getRepresentacion();
                     int xNuevaDestino = comando.at(6) - 48;
                     int yNuevaDestino = comando.at(5) - 65;
-                    if (tablero[xActual][yActual]->validarMovimiento(xNuevaDestino, yNuevaDestino))
+                    if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
                     {
                         imprimirTablero();
                         turnos++;
@@ -234,39 +234,39 @@ public:
                 }
                 else
                 {
-                    xActual = comando.at(2) - 65;
-                    yActual = comando.at(3) - 48;
-                    xDestino = comando.at(5) - 65;
-                    yDestino = comando.at(6) - 48;
+                    xActual = comando.at(3) - 48;
+                    yActual = comando.at(2) - 65;
+                    xDestino = comando.at(6) - 48;
+                    yDestino = comando.at(5) - 65;
                     while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
                         cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
                     }
                     while (tablero[xActual][yActual] == NULL)
                     {
                         cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
                         cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
                     }
 
                     while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
                         cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
                     }
-                    if (tablero[xActual][yActual]->validarMovimiento(xDestino, yDestino))
+                    if (tablero[xActual][yActual]->movimiento(xDestino, yDestino, xActual, yActual))
                     {
                         imprimirTableroNegras();
                         turnos++;

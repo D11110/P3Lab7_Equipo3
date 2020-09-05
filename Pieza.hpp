@@ -12,6 +12,16 @@ protected:
     Pieza ***tablero;
 
 public:
+    char getRepresentacion()
+    {
+        return this->representacion;
+    };
+    int getX(){
+        return this->x;
+    };
+    int getY(){
+        return this->y;
+    };
     Pieza()
     {
     }
@@ -22,25 +32,21 @@ public:
         this->representacion = representacion;
         this->tablero = tablero;
     }
-    virtual bool validarMovimiento(int, int) = 0;
+    virtual bool validarMovimiento(int, int, int, int) = 0;
 
-    char getRepresentacion()
+    bool movimiento(int _x, int _y, int xViejo, int yViejo)
     {
-        return this->representacion;
-    };
-    bool movimiento(int _x, int _y)
-    {
-        if (validarMovimiento(_x, _y))
+        if (validarMovimiento(_x, _y, xViejo, yViejo))
         {
             if (tablero[_x][_y] != NULL)
             {
-                tablero[_x][_y] = tablero[this->x][this->y];
+                tablero[_x][_y] = tablero[xViejo][yViejo];
             }
 
-            tablero[_x][_y] = tablero[this->x][this->y];
-            tablero[this->x][this->y] = NULL;
-            this->x = _x;
-            this->y = _y;
+            tablero[_x][_y] = tablero[xViejo][yViejo];
+            tablero[xViejo][yViejo] = NULL;
+            xViejo = _x;
+            yViejo = _y;
             return true;
         }
         else

@@ -17,10 +17,10 @@ public:
     {
     }
 
-    bool validarMovimiento(int nueva_x, int nueva_y)
+    bool validarMovimiento(int nueva_x, int nueva_y, int vieja_x, int vieja_y)
     {
-        int difEnX = nueva_x - this->x;
-        int difEnY = nueva_y - this->y;
+        int difEnX = nueva_x - vieja_x;
+        int difEnY = nueva_y - vieja_y;
         if (abs(difEnX) == abs(difEnY))
         {
             return true;

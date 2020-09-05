@@ -14,13 +14,13 @@ public:
     Peon(int posX, int posY, char representacion, Pieza ***tablero) : Pieza(x, y, representacion, tablero)
     {
     }
-    bool validarMovimiento(int nueva_x, int nueva_y)
+    bool validarMovimiento(int nueva_x, int nueva_y, int vieja_x, int vieja_y)
     {
         //E6---4 6
-        int difEnX = nueva_x - this->x;
-        if (this->tablero[nueva_x][nueva_y] == NULL)
+        int difEnX = nueva_x - vieja_x;
+        if (tablero[nueva_x][nueva_y] == NULL)
         {
-            if (nueva_y != y || abs(difEnX) != 1)
+            if (nueva_y != vieja_y || abs(difEnX) != 1)
             {
                 cout << "Pe";
                 return false;
@@ -30,9 +30,9 @@ public:
                 return true;
             }
         }
-        else if (tablero[x][y] != NULL)
+        else if (tablero[vieja_x][vieja_y] != NULL)
         {
-            if (((nueva_y - 1) == this->y) || ((nueva_y + 1) == this->x))
+            if (((nueva_y - 1) == vieja_y) || ((nueva_y + 1) == vieja_x))
             {
                 return true;
             }
