@@ -22,7 +22,6 @@ public:
     void crearTablero()
     {
         tablero = new Pieza **[8];
-
         for (int i = 0; i < 8; i++)
         {
             tablero[i] = new Pieza *[8];
