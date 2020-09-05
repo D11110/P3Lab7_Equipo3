@@ -42,22 +42,22 @@ public:
                         if (j == 1 || j == 6)
                         {
 
-                            tablero[i][j] = new Caballo(i, j,  'n');
+                            tablero[i][j] = new Caballo(i, j, 'n');
                         }
                         if (j == 2 || j == 5)
                         {
 
-                            tablero[i][j] = new Alfil(i, j,  'b');
+                            tablero[i][j] = new Alfil(i, j, 'b');
                         }
                         if (j == 3)
                         {
 
-                            tablero[i][j] = new Rey(i, j,  'k');
+                            tablero[i][j] = new Rey(i, j, 'k');
                         }
                         if (j == 4)
                         {
 
-                            tablero[i][j] = new Reina(i, j,  'q');
+                            tablero[i][j] = new Reina(i, j, 'q');
                         }
                     }
                     else if (i == 1)
@@ -69,29 +69,29 @@ public:
                 {
                     if (i == 6)
                     {
-                        tablero[i][j] = new Peon(i, j,  'P');
+                        tablero[i][j] = new Peon(i, j, 'P');
                     }
                     else if (i == 7)
                     {
                         if (j == 0 || j == 7)
                         {
-                            tablero[i][j] = new Torre(i, j,  'R');
+                            tablero[i][j] = new Torre(i, j, 'R');
                         }
                         else if (j == 1 || j == 6)
                         {
-                            tablero[i][j] = new Caballo(i, j,  'N');
+                            tablero[i][j] = new Caballo(i, j, 'N');
                         }
                         else if (j == 2 || j == 5)
                         {
-                            tablero[i][j] = new Alfil(i, j,  'B');
+                            tablero[i][j] = new Alfil(i, j, 'B');
                         }
                         else if (j == 3)
                         {
-                            tablero[i][j] = new Reina(i, j,  'Q');
+                            tablero[i][j] = new Reina(i, j, 'Q');
                         }
                         else if (j == 4)
                         {
-                            tablero[i][j] = new Rey(i, j,  'K');
+                            tablero[i][j] = new Rey(i, j, 'K');
                         }
                     }
                 }
@@ -112,11 +112,13 @@ public:
             {
                 if (tablero[i][j] == NULL)
                 {
-                    cout << "[.]";
+                    cout << "[ ]";
                 }
                 else
                 {
-                    cout << "[" + tablero[i][j]->getRepresentacion() + ']';
+                    cout << "[";
+                    cout << tablero[i][j]->getRepresentacion();
+                    cout << "]";
                 }
             }
             cout << endl;
