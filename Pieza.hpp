@@ -6,24 +6,24 @@ using namespace std;
 class Pieza
 {
 protected:
-    std::string x, y;
+    char x;
+    string y;
     char representacion;
 
 public:
     Pieza()
     {
     }
-    Pieza(string x, string y, char representacion)
+    Pieza(char x, string y, char representacion)
     {
         this->x = x;
         this->y = y;
         this->representacion = representacion;
     }
     virtual bool validarMovimiento(string, string, Pieza ***) = 0;
-    virtual string getX() = 0;
+    virtual char getX() = 0;
     virtual string getY() = 0;
-    virtual string getRepresentacion() = 0;
-    //virtual int coordenada() = 0;
+    virtual char getRepresentacion()=0;
     int coordenadaXs(string posicionAConvertir)
     {
         int x = 0;

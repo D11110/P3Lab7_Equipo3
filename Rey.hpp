@@ -11,10 +11,10 @@ public:
     Rey()
     {
     }
-    Rey(string x, string y, char represenacion) : Pieza(x, y, represenacion)
+    Rey(char x, string y, char represenacion) : Pieza(x, y, represenacion)
     {
     }
-    string getX()
+    char getX()
     {
         return this->x;
     }
@@ -40,6 +40,10 @@ public:
         {
             return true;
         }
+    }
+    char getRepresentacion()
+    {
+        return this->representacion;
     }
     ~Rey();
 };

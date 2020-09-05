@@ -13,11 +13,11 @@ public:
     {
     }
 
-    Alfil(string x, string y, char representacion) : Pieza(x, y, representacion)
+    Alfil(char x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
 
-    string getX()
+    char getX()
     {
         return this->x;
     }
@@ -25,7 +25,10 @@ public:
     {
         return this->y;
     }
-
+    char getRepresentacion()
+    {
+        return this->representacion;
+    }
     ~Alfil()
     {
     }

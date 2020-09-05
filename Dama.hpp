@@ -11,12 +11,16 @@ public:
     Reina()
     {
     }
-    Reina(string x, string y, char representacion) : Pieza(x, y, representacion)
+    Reina(char x, string y, char representacion) : Pieza(x, y, representacion)
     {
     }
-    string getX()
+    char getX()
     {
         return this->x;
+    }
+    char getRepresentacion()
+    {
+        return this->representacion;
     }
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
