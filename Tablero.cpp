@@ -20,6 +20,7 @@ int main()
         Ajedrez *ac = new Ajedrez();
         ac->crearTablero();
         ac->imprimirTablero();
+        
         resp = false;
     }
 }
