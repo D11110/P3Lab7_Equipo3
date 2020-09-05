@@ -17,9 +17,6 @@ public:
     {
     }
 
-    ~Alfil()
-    {
-    }
     bool validarMovimiento(int x, int y, Pieza ***tablero)
     {
         int difEnX = x - fila;
@@ -32,6 +29,9 @@ public:
         {
             return false;
         }
+    }
+    ~Alfil()
+    {
     }
 };
 
