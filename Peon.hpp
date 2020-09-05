@@ -14,7 +14,7 @@ public:
     Peon(int posX, int posY, char representacion, Pieza ***tablero) : Pieza(x, y, representacion, tablero)
     {
     }
-    bool validarMovimiento(int nueva_x, int nueva_y)
+    bool validarMovimiento(int nueva_y, int nueva_x)
     {
         if (this->tablero[nueva_x][nueva_y] == NULL)
         {
@@ -44,3 +44,4 @@ public:
 };
 
 #endif
+
