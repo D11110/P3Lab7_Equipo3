@@ -11,17 +11,10 @@ public:
     Rey()
     {
     }
-    Rey(string x, string y, char represenacion) : Pieza(x, y, represenacion)
+    Rey(int x, int y, char represenacion) : Pieza(x, y, represenacion)
     {
     }
-    string getX()
-    {
-        return this->x;
-    }
-    string getY()
-    {
-        return this->y;
-    }
+
 
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
@@ -41,6 +34,7 @@ public:
             return true;
         }
     }
+
     ~Rey();
 };
 

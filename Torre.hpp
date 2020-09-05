@@ -13,17 +13,8 @@ public:
     Torre()
     {
     }
-    Torre(string x, string y, char representacion) : Pieza(x, y, representacion)
+    Torre(int x, int y, char representacion) : Pieza(x, y, representacion)
     {
-    }
-
-    string getX()
-    {
-        return this->x;
-    }
-    string getY()
-    {
-        return this->y;
     }
 
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)

@@ -11,7 +11,7 @@ public:
     Peon()
     {
     }
-    Peon(string x, string y, char representacion) : Pieza(x, y, representacion)
+    Peon(int x, int y, char representacion) : Pieza(x, y, representacion)
     {
     }
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
@@ -51,14 +51,7 @@ public:
             }
         }
     }
-    string getX()
-    {
-        return this->x;
-    }
-    string getY()
-    {
-        return this->y;
-    }
+
 };
 
 #endif

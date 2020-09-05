@@ -10,16 +10,8 @@ class Caballo : public Pieza
 public:
     Caballo() {}
 
-    Caballo(string x, string y, char representacion) : Pieza(x, y, representacion) {}
+    Caballo(int x, int y, char representacion) : Pieza(x, y, representacion) {}
 
-    string getX()
-    {
-        return this->x;
-    }
-    string getY()
-    {
-        return this->y;
-    }
     bool validarMovimiento(string nuevaPosicion, string posicionActual, Pieza ***tablero)
     {
         int nuevaX, nuevaY, actualX, actualY;
