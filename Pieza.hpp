@@ -6,39 +6,41 @@ using namespace std;
 class Pieza
 {
 protected:
-    int fila;
-    int columna;
+    int x;
+    int y;
     char representacion;
+    Pieza ***tablero;
 
 public:
     Pieza()
     {
     }
-    Pieza(int x, int y, char representacion)
+    Pieza(int x, int y, char representacion, Pieza ***tablero)
     {
-        this->fila = x;
-        this->columna = y;
+        this->x = x;
+        this->y = y;
         this->representacion = representacion;
+        this->tablero = tablero;
     }
-    virtual bool validarMovimiento(int, int, Pieza ***){};
+    virtual bool validarMovimiento(int, int) = 0;
 
     char getRepresentacion()
     {
         return this->representacion;
     };
-    bool movimiento(int x, int y, Pieza ***tablero)
+    bool movimiento(int _x, int _y)
     {
-        if (validarMovimiento(x, y, tablero))
+        if (validarMovimiento(_x, _y))
         {
-            if (tablero[x][y] != NULL)
+            if (tablero[_x][_y] != NULL)
             {
-                tablero[x][y] = tablero[fila][columna];
+                tablero[_x][_y] = tablero[this->x][this->y];
             }
 
-            tablero[x][y] = tablero[fila][columna];
-            tablero[fila][columna] = NULL;
-            fila = x;
-            columna = y;
+            tablero[_x][_y] = tablero[this->x][this->y];
+            tablero[this->x][this->y] = NULL;
+            this->x = _x;
+            this->y = _y;
             return true;
         }
         else

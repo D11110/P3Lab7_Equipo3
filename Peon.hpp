@@ -11,31 +11,27 @@ public:
     Peon()
     {
     }
-    Peon(int posX, int posY, char representacion) : Pieza(fila, columna, representacion)
+    Peon(int posX, int posY, char representacion, Pieza ***tablero) : Pieza(x, y, representacion, tablero)
     {
     }
-    bool validarMovimiento(int x, int y, Pieza ***tablero)
+    bool validarMovimiento(int nueva_x, int nueva_y)
     {
-        if (tablero[x][y] == NULL)
+        if (this->tablero[nueva_x][nueva_y] == NULL)
         {
-            if (x < fila || y != columna)
+            if (nueva_x < x || nueva_y != y)
             {
                 cout << "Pe";
                 return false;
             }
             else
             {
-                tablero[x][y] = tablero[fila][columna];
-                tablero[fila][columna] = NULL;
                 return true;
             }
         }
         else if (tablero[x][y] != NULL)
         {
-            if (((y - 1) == columna) || ((y + 1) == columna) && (x == (fila + 1)))
+            if (((nueva_y - 1) == this->y) || ((nueva_y + 1) == this->x) && (nueva_x == (this->x + 1)))
             {
-                tablero[x][y] = tablero[fila][columna];
-                tablero[fila][columna] = NULL;
                 return true;
             }
             else
@@ -44,7 +40,6 @@ public:
                 return false;
             }
         }
-        
     }
 };
 

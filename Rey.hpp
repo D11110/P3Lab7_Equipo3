@@ -11,14 +11,14 @@ public:
     Rey()
     {
     }
-    Rey(int x, int y, char represenacion) : Pieza(fila, columna, represenacion)
+    Rey(int x, int y, char represenacion, Pieza ***tablero) : Pieza(x, y, represenacion, tablero)
     {
     }
 
-    bool validarMovimiento(int x, int y, Pieza ***tablero)
+    bool validarMovimiento(int nueva_x, int nueva_y)
     {
-        int difEnX = x - fila;
-        int difEnY = y - columna;
+        int difEnX = nueva_x - this->x;
+        int difEnY = nueva_y - this->y;
         if ((abs(difEnY) == 1 && difEnX == 0) || (abs(difEnX) == 1 && difEnY == 0))
         {
             return true;

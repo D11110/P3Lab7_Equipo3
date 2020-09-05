@@ -10,53 +10,24 @@ class Caballo : public Pieza
 public:
     Caballo() {}
 
-    Caballo(int x, int y, char representacion) : Pieza(fila, columna, representacion) {}
+    Caballo(int x, int y, char representacion, Pieza ***tablero) : Pieza(x, y, representacion, tablero) {}
 
-    bool validarMovimiento(int x, int y, Pieza ***tablero)
+    bool validarMovimiento(int nueva_x, int nueva_y)
     {
-        if (tablero[x][y] == NULL)
-        {
 
-            if (x == fila - 2 && y == columna - 1)
-            {
-                return true;
-            }
-            else if (x == fila - 1 && y == columna - 2)
-            {
-                return true;
-            }
-            else if (x == fila - 2 && y == columna + 1)
-            {
-                return true;
-            }
-            else if (x == fila - 2 && y == columna + 1)
-            {
-                return true;
-            }
-            else if (x == fila + 1 && y == columna - 2)
-            {
-                return true;
-            }
-            else if (x == fila + 2 && y == columna - 1)
-            {
-                return true;
-            }
-            else if (x == fila + 1 && y == columna + 2)
-            {
-                return true;
-            }
-            else if (x == fila + 2 && y == columna + 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        int difEnX = nueva_x - this->x;
+        int difEnY = nueva_y - this->y;
+        if (abs(difEnX) == 2 && abs(difEnY) == 1)
+        {
+            return true;
+        }
+        else if (abs(difEnY) == 2 && abs(difEnX) == 1)
+        {
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     ~Caballo()

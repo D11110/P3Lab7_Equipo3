@@ -11,14 +11,14 @@ public:
     Reina()
     {
     }
-    Reina(int x, int y, char representacion) : Pieza(fila, columna, representacion)
+    Reina(int x, int y, char representacion, Pieza ***tablero) : Pieza(x, y, representacion, tablero)
     {
     }
 
-    bool validarMovimiento(int x, int y, Pieza ***tablero)
+    bool validarMovimiento(int nueva_x, int nueva_y)
     {
-        int difEnX = x - fila;
-        int difEnY = y - columna;
+        int difEnX = nueva_x - this->x;
+        int difEnY = nueva_y - this->y;
         if (abs(difEnX) == abs(difEnY))
         {
             return true;

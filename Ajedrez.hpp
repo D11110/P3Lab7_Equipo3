@@ -37,61 +37,61 @@ public:
                         if (j == 0 || j == 7)
                         {
 
-                            tablero[i][j] = new Torre(i, j, 'r');
+                            tablero[i][j] = new Torre(i, j, 'r', tablero);
                         }
                         if (j == 1 || j == 6)
                         {
 
-                            tablero[i][j] = new Caballo(i, j, 'n');
+                            tablero[i][j] = new Caballo(i, j, 'n', tablero);
                         }
                         if (j == 2 || j == 5)
                         {
 
-                            tablero[i][j] = new Alfil(i, j, 'b');
+                            tablero[i][j] = new Alfil(i, j, 'b', tablero);
                         }
                         if (j == 3)
                         {
 
-                            tablero[i][j] = new Rey(i, j, 'k');
+                            tablero[i][j] = new Rey(i, j, 'k', tablero);
                         }
                         if (j == 4)
                         {
 
-                            tablero[i][j] = new Reina(i, j, 'q');
+                            tablero[i][j] = new Reina(i, j, 'q', tablero);
                         }
                     }
                     else if (i == 1)
                     {
-                        tablero[i][j] = new Peon(i, j, 'p');
+                        tablero[i][j] = new Peon(i, j, 'p', tablero);
                     }
                 }
                 else if (i >= 6)
                 {
                     if (i == 6)
                     {
-                        tablero[i][j] = new Peon(i, j, 'P');
+                        tablero[i][j] = new Peon(i, j, 'P', tablero);
                     }
                     else if (i == 7)
                     {
                         if (j == 0 || j == 7)
                         {
-                            tablero[i][j] = new Torre(i, j, 'R');
+                            tablero[i][j] = new Torre(i, j, 'R', tablero);
                         }
                         else if (j == 1 || j == 6)
                         {
-                            tablero[i][j] = new Caballo(i, j, 'N');
+                            tablero[i][j] = new Caballo(i, j, 'N', tablero);
                         }
                         else if (j == 2 || j == 5)
                         {
-                            tablero[i][j] = new Alfil(i, j, 'B');
+                            tablero[i][j] = new Alfil(i, j, 'B', tablero);
                         }
                         else if (j == 3)
                         {
-                            tablero[i][j] = new Reina(i, j, 'Q');
+                            tablero[i][j] = new Reina(i, j, 'Q', tablero);
                         }
                         else if (j == 4)
                         {
-                            tablero[i][j] = new Rey(i, j, 'K');
+                            tablero[i][j] = new Rey(i, j, 'K', tablero);
                         }
                     }
                 }
@@ -278,6 +278,7 @@ public:
             }
         }
     }
-    ~Ajedrez();
+
+    ~Ajedrez(){};
 };
 #endif
