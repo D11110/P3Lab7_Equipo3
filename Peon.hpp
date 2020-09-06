@@ -20,9 +20,13 @@ public:
         int difEnX = nueva_x - vieja_x;
         if (tablero[nueva_x][nueva_y] == NULL)
         {
-            if (nueva_y != vieja_y || abs(difEnX) != 1)
+            if ((vieja_x == 1 || vieja_x == 6) && (abs(difEnX) == 2))
             {
-                cout << "Pe";
+                return true;
+            }
+            else if ((nueva_y != vieja_y || abs(difEnX) != 1))
+            {
+
                 return false;
             }
             else

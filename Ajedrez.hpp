@@ -143,6 +143,52 @@ public:
             return false;
         }
     }
+    bool ahogado(Pieza ***tablero, char tipoDerey, int nuevaXDeRey, int nuevaYdeRey)
+    {
+        int contadorPiezasQuePuedenAhogar = 0;
+        int contadorPIezasEnemigasTotales = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (Rey *r = dynamic_cast<Rey *>(tablero[i][j]))
+                {
+                    if (isupper(tipoDerey) != 0)
+                    {
+                        char piezaDelEnemigo = tablero[i][j]->getRepresentacion();
+                        if (isupper(piezaDelEnemigo) == 0)
+                        {
+                            contadorPIezasEnemigasTotales++;
+                            if (tablero[nuevaXDeRey][nuevaYdeRey]->validarMovimiento(i, j, nuevaYdeRey, nuevaYdeRey))
+                            {
+                                contadorPiezasQuePuedenAhogar++;
+                            }
+                        }
+                    }
+                    else if (isupper(tipoDerey) == 0)
+                    {
+                        char piezaDelEnemigo = tablero[i][j]->getRepresentacion();
+                        if (isupper(piezaDelEnemigo) != 0)
+                        {
+                            contadorPIezasEnemigasTotales++;
+                            if (tablero[nuevaXDeRey][nuevaYdeRey]->validarMovimiento(i, j, nuevaYdeRey, nuevaYdeRey))
+                            {
+                                contadorPiezasQuePuedenAhogar++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (contadorPIezasEnemigasTotales == contadorPiezasQuePuedenAhogar)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     void crearTablero()
     {
         tablero = new Pieza **[8];
@@ -284,17 +330,24 @@ public:
         cin >> jugadorNegras;
         string comando;
         bool jaqueMate = true;
+        imprimirTablero();
         while (jaqueMate)
         {
             if (turnos % 2 == 0)
             {
-                imprimirTablero();
                 cout << jugadorBlancas << endl;
-                cout << "Ingrese: ";
+                cout << "Ingrese la pieza mover y su destino: ";
                 cin >> comando;
+                while (comando.at(1) != '|')
+                {
+                    cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                    cin >> comando;
+                }
+                comando.at(2) = toupper(comando.at(2));
+                comando.at(5) = toupper(comando.at(5));
                 if (comando == salida)
                 {
-                    break;
+                    jaqueMate = false;
                 }
                 else
                 {
@@ -302,36 +355,40 @@ public:
                     yActual = comando.at(2) - 65;
                     xDestino = comando.at(6) - 48;
                     yDestino = comando.at(5) - 65;
-                    // while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
-                    // {
-                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(2) - 65;
-                    //     yActual = comando.at(3) - 48;
-                    //     xDestino = comando.at(5) - 65;
-                    //     yDestino = comando.at(6) - 48;
-                    // }
-                    // while (tablero[xActual][yActual] == NULL)
-                    // {
-                    //     cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(2) - 65;
-                    //     yActual = comando.at(3) - 48;
-                    //     xDestino = comando.at(5) - 65;
-                    //     yDestino = comando.at(6) - 48;
-                    // }
+                    while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
+                    while (tablero[xActual][yActual] == NULL)
+                    {
+                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
 
-                    // while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
-                    // {
-                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(2) - 65;
-                    //     yActual = comando.at(3) - 48;
-                    //     xDestino = comando.at(5) - 65;
-                    //     yDestino = comando.at(6) - 48;
-                    // }
-                    // cout << tablero[xActual][yActual]->getRepresentacion();
-                    // cout << tablero[xDestino][yDestino]->getRepresentacion();
+                    while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
                     int xNuevaDestino = comando.at(6) - 48;
                     int yNuevaDestino = comando.at(5) - 65;
                     if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual])) //VALIDACION PARA ENROCAR
@@ -343,6 +400,11 @@ public:
                                 imprimirTablero();
                                 turnos++;
                             }
+                        }
+                        else if (ahogado(tablero, 'K', xDestino, yDestino))
+                        {
+                            cout << "Rey ahogado, no se pueden realizar movimientos. Juego terminado\nbai";
+                            jaqueMate = false;
                         }
                         else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
                         {
@@ -378,11 +440,18 @@ public:
             {
                 imprimirTableroNegras();
                 cout << jugadorNegras << endl;
-                cout << "Ingrese: ";
+                cout << "Ingrese la pieza a mover y su destino: ";
                 cin >> comando;
+                while (comando.at(1) != '|')
+                {
+                    cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                    cin >> comando;
+                }
+                comando.at(2) = toupper(comando.at(2));
+                comando.at(5) = toupper(comando.at(5));
                 if (comando == salida)
                 {
-                    break;
+                    jaqueMate = false;
                 }
                 else
                 {
@@ -390,34 +459,40 @@ public:
                     yActual = comando.at(2) - 65;
                     xDestino = comando.at(6) - 48;
                     yDestino = comando.at(5) - 65;
-                    // while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
-                    // {
-                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(3) - 48;
-                    //     yActual = comando.at(2) - 65;
-                    //     xDestino = comando.at(6) - 48;
-                    //     yDestino = comando.at(5) - 65;
-                    // }
-                    // while (tablero[xActual][yActual] == NULL)
-                    // {
-                    //     cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(3) - 48;
-                    //     yActual = comando.at(2) - 65;
-                    //     xDestino = comando.at(6) - 48;
-                    //     yDestino = comando.at(5) - 65;
-                    // }
+                    while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
+                    while (tablero[xActual][yActual] == NULL)
+                    {
+                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
 
-                    // while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
-                    // {
-                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                    //     cin >> comando;
-                    //     xActual = comando.at(3) - 48;
-                    //     yActual = comando.at(2) - 65;
-                    //     xDestino = comando.at(6) - 48;
-                    //     yDestino = comando.at(5) - 65;
-                    // }
+                    while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
+                    {
+                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
+                        cin >> comando;
+                        comando.at(2) = toupper(comando.at(2));
+                        comando.at(5) = toupper(comando.at(5));
+                        xActual = comando.at(3) - 48;
+                        yActual = comando.at(2) - 65;
+                        xDestino = comando.at(6) - 48;
+                        yDestino = comando.at(5) - 65;
+                    }
                     int xNuevaDestino = comando.at(6) - 48;
                     int yNuevaDestino = comando.at(5) - 65;
                     if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual])) //VALIDACION PARA ENROCAR
@@ -429,6 +504,11 @@ public:
                                 imprimirTablero();
                                 turnos++;
                             }
+                        }
+                        if (ahogado(tablero, 'k', xDestino, yDestino))
+                        {
+                            cout << "Rey ahogado, no se pueden realizar movimientos. Juego terminado\nbai";
+                            jaqueMate = false;
                         }
                         else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
                         {
@@ -474,7 +554,7 @@ public:
                     }
                 }
             }
-            if (contadorDeReyes != 2)
+            if (contadorDeReyes < 2)
             {
                 cout << "Jaque mate, juego acabado";
                 jaqueMate = false;
