@@ -28,13 +28,10 @@ public:
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    // for (int j = 0; j < 8; j++)
-                    // {
                     if (tablero[7][i] == NULL)
                     {
                         contadordePiezasVacias++;
                     }
-                    //}
                 }
                 if (contadordePiezasVacias == 0)
                 {
@@ -46,18 +43,104 @@ public:
                     int distanciaEntrePiezas = abs(yRey - yTorre);
                     if (distanciaEntrePiezas == 3)
                     {
-                        tablero[xRey][yRey] = tablero[xTorre][yTorre];
-                        tablero[xTorre][yTorre] = tablero[xRey][yRey];
+                        Torre *torreAEnrocar = dynamic_cast<Torre *>(tablero[xTorre][yTorre]);
+                        Rey *reyAEnrocar = dynamic_cast<Rey *>(tablero[xRey][yRey]);
+                        tablero[xTorre][yTorre] = reyAEnrocar;
+                        tablero[xRey][yRey] = NULL;
+                        tablero[xRey][yRey + 1] = torreAEnrocar;
                         return true;
                     }
                     else if (distanciaEntrePiezas == 4)
                     {
-                        tablero[xTorre][yTorre] = tablero[xRey][yRey];
-                        tablero[xRey - 1][yRey] = tablero[xTorre][yTorre];
+                        Torre *torreAEnrocar = dynamic_cast<Torre *>(tablero[xTorre][yTorre]);
+                        Rey *reyAEnrocar = dynamic_cast<Rey *>(tablero[xRey][yRey]);
+                        tablero[xTorre][yTorre] = reyAEnrocar;
+                        tablero[xRey][yRey] = NULL;
+                        tablero[xRey][yRey + 2] = torreAEnrocar;
                         return true;
                     }
                 }
             }
+        }
+    }
+    bool coronarPeon(int posXPeon, int posYPeon, int posXActualPeon, int posActualYPeon, char representacionPieza, Pieza ***tablero)
+    {
+        if (isupper(representacionPieza) != 0 && posXPeon == 0)
+        {
+
+            int eleccion = 0;
+            cout << "Elija la pieza a coronar su peon\n1. DAMA 2. CABALLO 3. TORRE 4. ALFIL" << endl;
+            cin >> eleccion;
+            switch (eleccion)
+            {
+            case 1:
+            {
+                tablero[posXPeon][posYPeon] = new Reina(posXPeon, posYPeon, 'Q', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 2:
+            {
+                tablero[posXPeon][posYPeon] = new Caballo(posXPeon, posYPeon, 'N', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 3:
+            {
+                tablero[posXPeon][posYPeon] = new Torre(posXPeon, posYPeon, 'R', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 4:
+            {
+                tablero[posXPeon][posYPeon] = new Alfil(posXPeon, posYPeon, 'B', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            default:
+                break;
+            }
+            return true;
+        }
+        else if (isupper(representacionPieza) == 0 && posXPeon == 7)
+        {
+            int eleccion = 0;
+            cout << "Elija la pieza a coronar su peon\n1. DAMA 2. CABALLO 3. TORRE 4. ALFIL" << endl;
+            cin >> eleccion;
+            switch (eleccion)
+            {
+            case 1:
+            {
+                tablero[posXPeon][posYPeon] = new Reina(posXPeon, posYPeon, 'q', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 2:
+            {
+                tablero[posXPeon][posYPeon] = new Caballo(posXPeon, posYPeon, 'n', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 3:
+            {
+                tablero[posXPeon][posYPeon] = new Torre(posXPeon, posYPeon, 'r', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            case 4:
+            {
+                tablero[posXPeon][posYPeon] = new Alfil(posXPeon, posYPeon, 'b', tablero);
+                tablero[posXActualPeon][posActualYPeon] = NULL;
+            }
+            break;
+            default:
+                break;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     void crearTablero()
@@ -215,32 +298,28 @@ public:
                 }
                 else
                 {
-                    //P|E6-E5
-                    cout << comando << endl;
                     xActual = comando.at(3) - 48;
                     yActual = comando.at(2) - 65;
                     xDestino = comando.at(6) - 48;
                     yDestino = comando.at(5) - 65;
-                    // cout << "Posicion actual" << xActual << " " << yActual;
-                    // cout << "Posicion NUeva" << xDestino << " " << yDestino;
-                    while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
-                    {
-                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                        cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
-                    }
-                    while (tablero[xActual][yActual] == NULL)
-                    {
-                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
-                        cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
-                    }
+                    // while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
+                    // {
+                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(2) - 65;
+                    //     yActual = comando.at(3) - 48;
+                    //     xDestino = comando.at(5) - 65;
+                    //     yDestino = comando.at(6) - 48;
+                    // }
+                    // while (tablero[xActual][yActual] == NULL)
+                    // {
+                    //     cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(2) - 65;
+                    //     yActual = comando.at(3) - 48;
+                    //     xDestino = comando.at(5) - 65;
+                    //     yDestino = comando.at(6) - 48;
+                    // }
 
                     // while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
                     // {
@@ -255,7 +334,7 @@ public:
                     // cout << tablero[xDestino][yDestino]->getRepresentacion();
                     int xNuevaDestino = comando.at(6) - 48;
                     int yNuevaDestino = comando.at(5) - 65;
-                    if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual]))
+                    if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual])) //VALIDACION PARA ENROCAR
                     {
                         if (Torre *t = dynamic_cast<Torre *>((tablero[xNuevaDestino][yNuevaDestino])))
                         {
@@ -264,6 +343,19 @@ public:
                                 imprimirTablero();
                                 turnos++;
                             }
+                        }
+                        else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                        {
+                            imprimirTablero();
+                            turnos++;
+                        }
+                    }
+                    else if (Peon *p = dynamic_cast<Peon *>((tablero[xActual][yActual]))) //CORONAR
+                    {
+                        if (coronarPeon(xNuevaDestino, yNuevaDestino, xActual, yActual, 'P', tablero))
+                        {
+                            imprimirTablero();
+                            turnos++;
                         }
                         else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
                         {
@@ -298,42 +390,73 @@ public:
                     yActual = comando.at(2) - 65;
                     xDestino = comando.at(6) - 48;
                     yDestino = comando.at(5) - 65;
-                    while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
-                    {
-                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                        cin >> comando;
-                        xActual = comando.at(3) - 48;
-                        yActual = comando.at(2) - 65;
-                        xDestino = comando.at(6) - 48;
-                        yDestino = comando.at(5) - 65;
-                    }
-                    while (tablero[xActual][yActual] == NULL)
-                    {
-                        cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
-                        cin >> comando;
-                        xActual = comando.at(3) - 48;
-                        yActual = comando.at(2) - 65;
-                        xDestino = comando.at(6) - 48;
-                        yDestino = comando.at(5) - 65;
-                    }
+                    // while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
+                    // {
+                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(3) - 48;
+                    //     yActual = comando.at(2) - 65;
+                    //     xDestino = comando.at(6) - 48;
+                    //     yDestino = comando.at(5) - 65;
+                    // }
+                    // while (tablero[xActual][yActual] == NULL)
+                    // {
+                    //     cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(3) - 48;
+                    //     yActual = comando.at(2) - 65;
+                    //     xDestino = comando.at(6) - 48;
+                    //     yDestino = comando.at(5) - 65;
+                    // }
 
-                    while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
+                    // while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
+                    // {
+                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(3) - 48;
+                    //     yActual = comando.at(2) - 65;
+                    //     xDestino = comando.at(6) - 48;
+                    //     yDestino = comando.at(5) - 65;
+                    // }
+                    int xNuevaDestino = comando.at(6) - 48;
+                    int yNuevaDestino = comando.at(5) - 65;
+                    if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual])) //VALIDACION PARA ENROCAR
                     {
-                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
-                        cin >> comando;
-                        xActual = comando.at(3) - 48;
-                        yActual = comando.at(2) - 65;
-                        xDestino = comando.at(6) - 48;
-                        yDestino = comando.at(5) - 65;
+                        if (Torre *t = dynamic_cast<Torre *>((tablero[xNuevaDestino][yNuevaDestino])))
+                        {
+                            if (enrocar(xActual, yActual, xNuevaDestino, yNuevaDestino, tablero))
+                            {
+                                imprimirTablero();
+                                turnos++;
+                            }
+                        }
+                        else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                        {
+                            imprimirTablero();
+                            turnos++;
+                        }
                     }
-                    if (tablero[xActual][yActual]->movimiento(xDestino, yDestino, xActual, yActual))
+                    else if (Peon *p = dynamic_cast<Peon *>((tablero[xActual][yActual]))) //CORONAR
                     {
-                        imprimirTableroNegras();
+                        if (coronarPeon(xNuevaDestino, yNuevaDestino, xActual, yActual, 'P', tablero))
+                        {
+                            imprimirTablero();
+                            turnos++;
+                        }
+                        else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                        {
+                            imprimirTablero();
+                            turnos++;
+                        }
+                    }
+                    else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                    {
+                        imprimirTablero();
                         turnos++;
                     }
                     else
                     {
-                        cout << "\nAlgo inesperado ocurrio. Intente de nuevo.\n";
+                        cout << "\nAlgo salio mal. Intente de nuevo.\n";
                     }
                 }
             }

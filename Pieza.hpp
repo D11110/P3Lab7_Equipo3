@@ -39,7 +39,6 @@ public:
     bool movimiento(int _x, int _y, int xViejo, int yViejo)
     {
 
-        int contadordePiezasVacias = 0;
         if (validarMovimiento(_x, _y, xViejo, yViejo))
         {
             if (tablero[_x][_y] != NULL)
