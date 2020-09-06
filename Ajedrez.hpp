@@ -343,6 +343,11 @@ public:
                     cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
                     cin >> comando;
                 }
+                while (comando.size() != 7)
+                {
+                    cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                    cin >> comando;
+                }
                 comando.at(2) = toupper(comando.at(2));
                 comando.at(5) = toupper(comando.at(5));
                 if (comando == salida)
@@ -359,6 +364,11 @@ public:
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
@@ -370,6 +380,11 @@ public:
                     {
                         cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
@@ -382,6 +397,11 @@ public:
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
@@ -442,6 +462,11 @@ public:
                 cout << jugadorNegras << endl;
                 cout << "Ingrese la pieza a mover y su destino: ";
                 cin >> comando;
+                while (comando.size() != 7)
+                {
+                    cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                    cin >> comando;
+                }
                 while (comando.at(1) != '|')
                 {
                     cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
@@ -463,6 +488,11 @@ public:
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
@@ -474,6 +504,11 @@ public:
                     {
                         cout << "No se puede, no pieza en la posicion ingresada. \nCoordenada de nuevo-> ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
@@ -486,6 +521,11 @@ public:
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
                         cin >> comando;
+                        while (comando.size() != 7)
+                        {
+                            cout << "Ingrese una entrada valida\n<Inicial De Pieza>|<Coordenada Inicial>-<Coordenada destino>";
+                            cin >> comando;
+                        }
                         comando.at(2) = toupper(comando.at(2));
                         comando.at(5) = toupper(comando.at(5));
                         xActual = comando.at(3) - 48;
