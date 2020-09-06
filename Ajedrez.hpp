@@ -19,6 +19,47 @@ public:
     Ajedrez()
     {
     }
+    bool enrocar(int xRey, int yRey, int xTorre, int yTorre, Pieza ***tablero)
+    {
+        int contadordePiezasVacias = 0;
+        if (Rey *r = dynamic_cast<Rey *>(tablero[xRey][yRey]))
+        {
+            if (Torre *t = dynamic_cast<Torre *>(tablero[xTorre][yTorre]))
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    // for (int j = 0; j < 8; j++)
+                    // {
+                    if (tablero[7][i] == NULL)
+                    {
+                        contadordePiezasVacias++;
+                    }
+                    //}
+                }
+                if (contadordePiezasVacias == 0)
+                {
+                    cout << "No se puede realizar un enroque" << endl;
+                    return false;
+                }
+                else
+                {
+                    int distanciaEntrePiezas = abs(yRey - yTorre);
+                    if (distanciaEntrePiezas == 3)
+                    {
+                        tablero[xRey][yRey] = tablero[xTorre][yTorre];
+                        tablero[xTorre][yTorre] = tablero[xRey][yRey];
+                        return true;
+                    }
+                    else if (distanciaEntrePiezas == 4)
+                    {
+                        tablero[xTorre][yTorre] = tablero[xRey][yRey];
+                        tablero[xRey - 1][yRey] = tablero[xTorre][yTorre];
+                        return true;
+                    }
+                }
+            }
+        }
+    }
     void crearTablero()
     {
         tablero = new Pieza **[8];
@@ -180,8 +221,8 @@ public:
                     yActual = comando.at(2) - 65;
                     xDestino = comando.at(6) - 48;
                     yDestino = comando.at(5) - 65;
-                    cout << "Posicion actual" << xActual << " " << yActual;
-                    cout << "Posicion NUeva" << xDestino << " " << yDestino;
+                    // cout << "Posicion actual" << xActual << " " << yActual;
+                    // cout << "Posicion NUeva" << xDestino << " " << yDestino;
                     while (xDestino < 0 || xDestino > 7 || yDestino < 0 || yDestino > 7)
                     {
                         cout << "No se puede, fuera de los limites. \nCoordenada de nuevo-> ";
@@ -201,20 +242,36 @@ public:
                         yDestino = comando.at(6) - 48;
                     }
 
-                    while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
-                    {
-                        cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
-                        cin >> comando;
-                        xActual = comando.at(2) - 65;
-                        yActual = comando.at(3) - 48;
-                        xDestino = comando.at(5) - 65;
-                        yDestino = comando.at(6) - 48;
-                    }
+                    // while (xActual < 0 || xActual > 7 || yActual < 0 || yActual > 7)
+                    // {
+                    //     cout << "No se puede, fuera de los limites. \nCoordenada de nuevo->  ";
+                    //     cin >> comando;
+                    //     xActual = comando.at(2) - 65;
+                    //     yActual = comando.at(3) - 48;
+                    //     xDestino = comando.at(5) - 65;
+                    //     yDestino = comando.at(6) - 48;
+                    // }
                     // cout << tablero[xActual][yActual]->getRepresentacion();
                     // cout << tablero[xDestino][yDestino]->getRepresentacion();
                     int xNuevaDestino = comando.at(6) - 48;
                     int yNuevaDestino = comando.at(5) - 65;
-                    if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                    if (Rey *r = dynamic_cast<Rey *>(tablero[xActual][yActual]))
+                    {
+                        if (Torre *t = dynamic_cast<Torre *>((tablero[xNuevaDestino][yNuevaDestino])))
+                        {
+                            if (enrocar(xActual, yActual, xNuevaDestino, yNuevaDestino, tablero))
+                            {
+                                imprimirTablero();
+                                turnos++;
+                            }
+                        }
+                        else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
+                        {
+                            imprimirTablero();
+                            turnos++;
+                        }
+                    }
+                    else if (tablero[xActual][yActual]->movimiento(xNuevaDestino, yNuevaDestino, xActual, yActual))
                     {
                         imprimirTablero();
                         turnos++;
@@ -291,14 +348,6 @@ public:
                     if (Rey *r = dynamic_cast<Rey *>(tablero[i][j]))
                     {
                         contadorDeReyes++;
-                    }
-                    if (isupper(tablero[i][j]->getRepresentacion()) != 0)
-                    {
-                        contadorPiezasBalncas++;
-                    }
-                    else if (isupper(tablero[i][j]->getRepresentacion()) == 0)
-                    {
-                        contadorPiezasNegras++;
                     }
                 }
             }

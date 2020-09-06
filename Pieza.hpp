@@ -46,6 +46,7 @@ public:
             {
 
                 tablero[_x][_y] = tablero[xViejo][yViejo];
+                tablero[xViejo][yViejo] = NULL;
                 return true;
             }
             else
