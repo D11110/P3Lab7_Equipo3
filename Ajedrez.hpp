@@ -123,6 +123,7 @@ public:
             }
             cout << endl;
         }
+        cout << endl;
     }
     void imprimirTableroNegras()
     {
@@ -145,6 +146,7 @@ public:
             }
             cout << endl;
         }
+        cout << endl;
     }
     void jugar()
     {
@@ -157,7 +159,8 @@ public:
         cout << "Ingrese su nombre jugador de piezas negras" << endl;
         cin >> jugadorNegras;
         string comando;
-        while (true)
+        bool jaqueMate = true;
+        while (jaqueMate)
         {
             if (turnos % 2 == 0)
             {
@@ -277,9 +280,35 @@ public:
                     }
                 }
             }
+            int contadorDeReyes = 0;
+            int contadorPiezasBalncas = 0;
+            int contadorPiezasNegras = 0;
+            int contadorMovidasParaAhogarArey = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (Rey *r = dynamic_cast<Rey *>(tablero[i][j]))
+                    {
+                        contadorDeReyes++;
+                    }
+                    if (isupper(tablero[i][j]->getRepresentacion()) != 0)
+                    {
+                        contadorPiezasBalncas++;
+                    }
+                    else if (isupper(tablero[i][j]->getRepresentacion()) == 0)
+                    {
+                        contadorPiezasNegras++;
+                    }
+                }
+            }
+            if (contadorDeReyes != 2)
+            {
+                cout << "Jaque mate, juego acabado";
+                jaqueMate = false;
+            }
         }
     }
-
     ~Ajedrez(){};
 };
 #endif
